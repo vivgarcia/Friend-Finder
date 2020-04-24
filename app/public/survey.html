@@ -6,6 +6,8 @@
         <title>Survey | Friend Finder</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery.js"></script>
     </head>
     <body>
         <div class="container">
@@ -197,12 +199,28 @@
             </div>
             <br>
             <div class="control">
-                <button class="button is-info is-fullwidth"> <span class="icon is-small"><i class="fas fa-check-circle"></i></span> <span>Submit</span> </button>
+                <button class="button is-info is-fullwidth" id="submitButton"> <span class="icon is-small"><i class="fas fa-check-circle"></i></span> <span>Submit</span> </button>
             </div>
             <hr>
             <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/vivgarcia/Friend-Finder" target="_blank">GitHub Repo</a></p>
 
         </section>
         </div>
+
+        <!-- Results Modal -->
+
+        <div class="modal" id="resultsModal">
+        <!-- code goes here -->
+
+        </div>
+    <!-- logic goes here -->
+        <script>
+            $(document).ready(function(){
+                $("#submitButton").on("click", function(){
+                    alert("I've been clicked!");
+                })
+            })
+
+        </script>
     </body>
 </html>

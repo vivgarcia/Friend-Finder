@@ -1,9 +1,18 @@
 var friends = [
     {
         name: "Leslie",
-        photo: " ",
+        photo: "https://i.imgur.com/VW5jGa3.png",
         scores: [
-
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
         ]
     },
     {
