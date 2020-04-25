@@ -236,8 +236,11 @@
                         });
                         return surveyCompleted;
                     }
+                    // checks if form is filled out completely
                     if(newForm() === true){
                         alert("survey complete");
+                    }else{  
+                        alert("Please complete all fields to proceed.")
                     }
                     
                 })

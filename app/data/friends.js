@@ -63,7 +63,16 @@ var friends = [
         name: "Chris Traeger",
         photo: "https://i.imgur.com/rZU3eTq.png",
         scores: [
-
+            "5",
+            "5",
+            "5",
+            "5",
+            "5",
+            "5",
+            "5",
+            "5",
+            "5",
+            "5"
         ]
     },
     {
