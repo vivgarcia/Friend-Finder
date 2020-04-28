@@ -6,7 +6,7 @@ Full-stack application that takes in results from users' surveys, then compare t
 
 ### How To Use It
 
-Visit live application here: ['']
+Visit live application here: ['https://secure-reef-55996.herokuapp.com/']
 
 * Click 'Go to Survey'
 * Fill out survey
