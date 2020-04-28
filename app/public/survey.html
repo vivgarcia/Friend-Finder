@@ -25,13 +25,13 @@
             <div class="field">
                 <label class="label">Name (Required)</label>
                 <div class="control">
-                <input class="input about-user" type="text" placeholder=" ">
+                <input class="input about-user" id="userName" type="text" placeholder=" ">
                 </div>
             </div>
             <div class="field">
                 <label class="label">Link to Photo Image (Required)</label>
                 <div class="control">
-                <input class="input about-user" type="text" placeholder=" ">
+                <input class="input about-user" id="userPhoto" type="text" placeholder=" ">
                 </div>
             </div>
             <hr>
@@ -41,7 +41,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question">
+                    <select class="question" id="Q1">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -58,7 +58,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question">
+                    <select class="question" id="Q2">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -74,7 +74,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question">
+                    <select class="question" id="Q3">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -90,7 +90,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question">
+                    <select class="question" id="Q4">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -106,7 +106,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question">
+                    <select class="question" id="Q5">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -122,7 +122,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question">
+                    <select class="question" id="Q6">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -138,7 +138,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question">
+                    <select class="question" id="Q7">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -154,7 +154,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question">
+                    <select class="question" id="Q8">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -171,7 +171,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question">
+                    <select class="question" id="Q9">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -187,7 +187,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question">
+                    <select class="question" id="Q10">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -210,9 +210,11 @@
         <!-- Results Modal -->
 
         <div class="modal" id="resultsModal">
-            <button class="delete" aria-label="close"></button>
+            <button class="delete" aria-label="close" data-dismiss="modal"></button>
             <section class="modal-card-body">
                 <!-- code goes here -->
+                <h2 class="title is-2" id="matchName"></h2>
+                <img id="matchImg" src="">
             </section>
         </div>
 
@@ -221,6 +223,7 @@
             $(document).ready(function(){
                 $("#submitButton").on("click", function(){
                     // alert("I've been clicked!");
+                    // console.log($("#Q5").val());
                     function newForm(){
                         var surveyCompleted = true;
                         // checks if user input name and picture 
@@ -238,7 +241,32 @@
                     }
                     // checks if form is filled out completely
                     if(newForm() === true){
-                        alert("survey complete");
+                        // alert("survey complete");
+                        var newFriend = {
+                            name: $("#userName").val().trim(),
+                            photo: $("#userPhoto").val().trim(),
+                            scores: [
+                                $("#Q1").val(),
+                                $("#Q2").val(),
+                                $("#Q3").val(),
+                                $("#Q4").val(),
+                                $("#Q5").val(),
+                                $("#Q6").val(),
+                                $("#Q7").val(),
+                                $("#Q8").val(),
+                                $("#Q9").val(),
+                                $("#Q10").val()
+                            ]
+                        };
+                        
+                        var currentURL = window.location.origin; 
+                        // console.log(currentURL + "/api/friends");
+                        $.post(currentURL + "/api/friends", newFriend, function(data){
+                            $("#matchName").text(data.name);
+                            $("#matchImg").attr("src", data.photo);
+                            $("#resultsModal").modal("toggle");
+                        })
+
                     }else{  
                         alert("Please complete all fields to proceed.")
                     }
