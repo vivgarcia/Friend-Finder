@@ -5,9 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Survey | Friend Finder</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     </head>
     <body>
         <div class="container">
@@ -209,13 +212,34 @@
 
         <!-- Results Modal -->
 
-        <div class="modal" id="resultsModal">
+        <!-- <div class="modal" id="resultsModal">
             <button class="delete" aria-label="close" data-dismiss="modal"></button>
             <section class="modal-card-body">
-                <!-- code goes here -->
-                <h2 class="title is-2" id="matchName"></h2>
+                code goes here -->
+                <!-- <h2 class="title is-2" id="matchName"></h2>
                 <img id="matchImg" src="">
             </section>
+        </div> -->
+
+        <div class="modal fade" id="staticBackdrop resultsModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel matchName"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h2>Best Match</h2>
+                </div>
+                <div class="modal-body">
+                    <h2 id="matchName"></h2>
+                    <img src="" alt="" id="matchImg">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
         </div>
 
     <!-- logic goes here -->
@@ -242,9 +266,9 @@
                     // checks if form is filled out completely
                     if(newForm() === true){
                         // alert("survey complete");
-                        var newFriend = {
-                            name: $("#userName").val().trim(),
-                            photo: $("#userPhoto").val().trim(),
+                        var userData = {
+                            name: $("#name").val(),
+                            photo: $("#photo").val(),
                             scores: [
                                 $("#Q1").val(),
                                 $("#Q2").val(),
@@ -261,12 +285,13 @@
                         
                         var currentURL = window.location.origin; 
                         // console.log(currentURL + "/api/friends");
-                        $.post(currentURL + "/api/friends", newFriend, function(data){
+                        $.post(currentURL + "/api/friends", userData, function(data){
+                            console.log(data.name);
+                            console.log(data.photo);
                             $("#matchName").text(data.name);
                             $("#matchImg").attr("src", data.photo);
                             $("#resultsModal").modal("toggle");
                         })
-
                     }else{  
                         alert("Please complete all fields to proceed.")
                     }
