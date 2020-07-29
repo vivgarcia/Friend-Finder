@@ -8,9 +8,9 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
         <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+        <!-- Chosen -->
+
     </head>
     <body>
         <div class="container">
@@ -28,13 +28,13 @@
             <div class="field">
                 <label class="label">Name (Required)</label>
                 <div class="control">
-                <input class="input about-user" id="userName" type="text" placeholder=" ">
+                <input class="input about-user form-control" id="name" type="text" placeholder=" ">
                 </div>
             </div>
             <div class="field">
                 <label class="label">Link to Photo Image (Required)</label>
                 <div class="control">
-                <input class="input about-user" id="userPhoto" type="text" placeholder=" ">
+                <input class="input about-user form-control" id="photo" type="text" placeholder=" ">
                 </div>
             </div>
             <hr>
@@ -44,8 +44,8 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question" id="Q1">
-                        <option>Select an Option</option>
+                    <select class="chosen-select" id="q1">
+                        <option value="">Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -61,7 +61,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question" id="Q2">
+                    <select class="chosen-select" id="q2">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -77,7 +77,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question" id="Q3">
+                    <select class="chosen-select" id="q3">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -93,7 +93,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question" id="Q4">
+                    <select class="chosen-select" id="q4">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -109,7 +109,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question" id="Q5">
+                    <select class="chosen-select" id="q5">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -125,7 +125,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question" id="Q6">
+                    <select class="chosen-select" id="q6">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -141,7 +141,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question" id="Q7">
+                    <select class="chosen-select" id="q7">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -157,7 +157,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question" id="Q8">
+                    <select class="chosen-select" id="q8">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -174,7 +174,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question" id="Q9">
+                    <select class="chosen-select" id="q9">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -190,7 +190,7 @@
             <br>
             <div class="control">
                 <div class="select">
-                    <select class="question" id="Q10">
+                    <select class="chosen-select" id="q10">
                         <option>Select an Option</option>
                         <option value="1">1 (Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -202,7 +202,7 @@
             </div>
             <br>
             <div class="control">
-                <button class="button is-info is-fullwidth" id="submitButton"> <span class="icon is-small"><i class="fas fa-check-circle"></i></span> <span>Submit</span> </button>
+                <button type="submit" class="button is-info is-fullwidth" id="submitButton"> <span class="icon is-small"><i class="fas fa-check-circle"></i></span> <span>Submit</span> </button>
             </div>
             <hr>
             <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/vivgarcia/Friend-Finder" target="_blank">GitHub Repo</a></p>
@@ -210,95 +210,92 @@
         </section>
         </div>
 
-        <!-- Results Modal -->
+        <!-- Modal -->
+  <div id="results-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-        <!-- <div class="modal" id="resultsModal">
-            <button class="delete" aria-label="close" data-dismiss="modal"></button>
-            <section class="modal-card-body">
-                code goes here -->
-                <!-- <h2 class="title is-2" id="matchName"></h2>
-                <img id="matchImg" src="">
-            </section>
-        </div> -->
-
-        <div class="modal fade" id="staticBackdrop resultsModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel matchName"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h2>Best Match</h2>
-                </div>
-                <div class="modal-body">
-                    <h2 id="matchName"></h2>
-                    <img src="" alt="" id="matchImg">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            </div>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title"><strong>Best Match</strong></h2>
         </div>
+        <div class="modal-body">
+          <h2 id="match-name"></h2>
+          <img id="match-img" src="https://via.placeholder.com/400" alt="">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
 
-    <!-- logic goes here -->
-        <script>
-            $(document).ready(function(){
-                $("#submitButton").on("click", function(){
-                    // alert("I've been clicked!");
-                    // console.log($("#Q5").val());
-                    function newForm(){
-                        var surveyCompleted = true;
-                        // checks if user input name and picture 
-                        $(".about-user").each(function(){
-                            if($(this).val() === ""){
-                                surveyCompleted = false;
-                            }
-                        });
-                        $(".question").each(function(){
-                            if($(this).val() === ""){
-                                surveyCompleted = false;
-                            }
-                        });
-                        return surveyCompleted;
-                    }
-                    // checks if form is filled out completely
-                    if(newForm() === true){
-                        // alert("survey complete");
-                        var userData = {
-                            name: $("#name").val(),
-                            photo: $("#photo").val(),
-                            scores: [
-                                $("#Q1").val(),
-                                $("#Q2").val(),
-                                $("#Q3").val(),
-                                $("#Q4").val(),
-                                $("#Q5").val(),
-                                $("#Q6").val(),
-                                $("#Q7").val(),
-                                $("#Q8").val(),
-                                $("#Q9").val(),
-                                $("#Q10").val()
-                            ]
-                        };
-                        
-                        var currentURL = window.location.origin; 
-                        // console.log(currentURL + "/api/friends");
-                        $.post(currentURL + "/api/friends", userData, function(data){
-                            console.log(data.name);
-                            console.log(data.photo);
-                            $("#matchName").text(data.name);
-                            $("#matchImg").attr("src", data.photo);
-                            $("#resultsModal").modal("toggle");
-                        })
-                    }else{  
-                        alert("Please complete all fields to proceed.")
-                    }
-                    
-                });
-            });
+    </div>
+  </div>
 
-        </script>
+  <script type="text/javascript">
+  var config = {
+      ".chosen-select": {},
+      ".chosen-select-deselect": {
+        allow_single_deselect: true
+      },
+      ".chosen-select-no-single": {
+        disable_search_threshold: 10
+      },
+      ".chosen-select-no-results": {
+        no_results_text: "Oops, nothing found!"
+      },
+      ".chosen-select-width": {
+        width: "95%"
+      }
+    };
+    // for (var selector in config) {
+    //   $(selector).chosen(config[selector]);
+    // }
+
+    $("#submitButton").on('click', function(){
+      event.preventDefault();
+
+      function validateForm(){
+        var isValid = true;
+        $(".form-control").each(function(){
+          if($(this).val() === ""){
+            isValid = false;
+          }
+        });
+        return isValid;
+      }
+
+      if(validateForm()){
+        var userData = {
+          name: $("#name").val(),
+          photo: $("#photo").val(),
+          scores: [
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val(),
+            $("#q6").val(),
+            $("#q7").val(),
+            $("#q8").val(),
+            $("#q9").val(),
+            $("#q10").val()
+          ]
+        };
+
+        $.post("/api/friends", userData, function(data){
+          $("#match-name").text(data.name);
+          $("#match-img").attr("src", data.photo);
+
+          // Show the modal with the best match
+          console.log(`This is going in modal: ${data.name} ${data.photo}`)
+        });
+      } else {
+        alert("Please fill out all fields before submitting!");
+      }
+
+    });
+  </script>
+
     </body>
 </html>
