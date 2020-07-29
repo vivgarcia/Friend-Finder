@@ -1,0 +1,16 @@
+.show {
+    margin: 20px auto;
+    display: block;
+}
+.modal{
+    top: 25;
+}
+.match-name{
+    text-align: center;
+}
+.match-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
