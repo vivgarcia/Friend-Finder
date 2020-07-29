@@ -7,6 +7,7 @@ Full-stack application that takes in results from users' surveys, then compare t
 ### How To Use It
 
 Visit live application here: ['https://secure-reef-55996.herokuapp.com/']
+![](friend-finder-ss.png)
 
 * Click 'Go to Survey'
 * Fill out survey
